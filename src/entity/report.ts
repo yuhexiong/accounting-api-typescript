@@ -6,11 +6,14 @@ export default class Report {
   @Generated('increment')
   id!: number;
 
-  @Column({ type: "varchar", comment: '日期', length: 20 })
-  data!: Date;
-
   @Column({ type: "smallint", comment: "狀態", default: 0 })
   status?: number;
+
+  @Column({ type: "smallint", comment: '年' })
+  year!: number;
+
+  @Column({ type: "smallint", comment: '月' })
+  month!: number;
 
   @Column({ type: "json", comment: '依分類金額', default: '{}' })
   content!: object;

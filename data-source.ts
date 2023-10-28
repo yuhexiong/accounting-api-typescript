@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || "root",
   password: process.env.DB_PASS || "password",
   database: process.env.DB_NAME || "accounting",
-  synchronize: true,
+  synchronize: false,
   logging: true,
   entities: [CronJob, Consumption, Type, Report],
   migrations: [`src/migrations/*.{ts,js}`],

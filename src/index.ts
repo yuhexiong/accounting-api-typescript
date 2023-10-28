@@ -1,28 +1,26 @@
-import { AppDataSource } from "../data-source"
-import express, { Express } from 'express';
-import CronJobRouter from './routes/cronJobRouter';
 import * as dotenv from "dotenv";
+import express, { Express } from 'express';
+import { AppDataSource } from "../data-source";
+import { executeCronJobs } from "../executeCronJob";
+import CronJobRouter from './routes/cronJobRouter';
 
-dotenv.config({ path: __dirname+'/.env' });
+dotenv.config({ path: __dirname + '/.env' });
 
-export async function initDB() {
-  await AppDataSource.initialize();
-}
-
-const port = process.env.PORT || 8080;
+const port = process.env.PORT ?? 8080;
 const app: Express = express();
 app.use(express.json());
 
 const cronJobRouter = new CronJobRouter;
 app.use('', cronJobRouter.router);
 
-async function start() {
-  await initDB();
+async function main() {
+  await AppDataSource.initialize();
+
   app.listen(port, () => {
     console.log(`server is running on http://localhost:${port}`);
   });
+
+  await executeCronJobs();
 }
 
-start();
-
-export default app;
+main();
