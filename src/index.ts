@@ -16,11 +16,10 @@ app.use(express.json());
 const cronJobRouter = new CronJobRouter;
 app.use('', cronJobRouter.router);
 
-
 async function start() {
   await initDB();
   app.listen(port, () => {
-      console.log(`server is running on http://localhost:${port}`);
+    console.log(`server is running on http://localhost:${port}`);
   });
 }
 
