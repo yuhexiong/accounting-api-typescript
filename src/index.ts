@@ -1,4 +1,4 @@
-import { AppDataSource } from "./data-source"
+import { AppDataSource } from "../data-source"
 import express, { Express } from 'express';
 import CronJobRouter from './routes/cronJobRouter';
 import * as dotenv from "dotenv";

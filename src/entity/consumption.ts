@@ -1,15 +1,14 @@
 import { Column, Entity, Generated, JoinColumn, ManyToOne } from "typeorm";
-import { Type } from "./type";
+import Type from "./type";
 
 @Entity('consumption')
-export class Consumption {
-
+export default class Consumption {
   @Column("bigint", { primary: true, comment: "流水號", })
   @Generated('increment')
   id!: number;
 
   @Column({ type: "varchar", comment: '日期', length: 20 })
-  data!: Date;
+  date!: Date;
 
   @Column({ type: "smallint", comment: "狀態", default: 0 })
   status?: number;

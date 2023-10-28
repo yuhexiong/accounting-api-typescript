@@ -1,8 +1,7 @@
 import { Column, Entity, Generated } from "typeorm";
 
 @Entity('cronJob')
-export class CronJob {
-
+export default class CronJob {
   @Column("bigint", { primary: true, comment: "流水號", })
   @Generated('increment')
   id!: number;

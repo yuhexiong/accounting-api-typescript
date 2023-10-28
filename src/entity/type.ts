@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { Consumption } from "./consumption";
+import Consumption from "./consumption";
 
 @Entity('type')
-export class Type {
+export default class Type {
   @Column("varchar", { primary: true, comment: "id", length: 20, })
   id!: string;
 
