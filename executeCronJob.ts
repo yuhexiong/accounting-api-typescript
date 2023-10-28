@@ -18,9 +18,11 @@ export const executeCronJobs = async () => {
   for (const cronJob of cronJobs) {
     const cronPattern = `${cronJob.seconds} ${cronJob.minutes} ${cronJob.hours} * * *`;
     const job = new CronJob(cronPattern, async () => {
+
+      /* 計算上個月花費報表 */
       if (cronJob.name === cronJobList.MONTHLY_REPORT) {
-        const startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
-        const endOfMonth = moment().endOf('month').format('YYYY-MM-DD');
+        const startOfMonth = moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD');
+        const endOfMonth = moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
 
         const consumptions = await AppDataSource.getRepository(Consumption)
           .createQueryBuilder('consumption')
@@ -29,8 +31,8 @@ export const executeCronJobs = async () => {
           .getMany();
 
         const report = new Report();
-        report.year = Number(moment().format('YYYY'));
-        report.month = Number(moment().format('MM'));
+        report.year = Number(moment(startOfMonth).format('YYYY'));
+        report.month = Number(moment(startOfMonth).format('MM'));
 
         const content = {};
         let totalAmount = 0;

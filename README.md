@@ -22,11 +22,27 @@ PORT =
 
 ## Run
 
+### install dependencies
+
 ```bash
-# install dependencies
+
 npm install
 
-# run
+```
+
+### generate migration file and transition database schema
+
+```bash
+
+npm run migration:generate
+npm run migration:run
+
+```
+
+### run
+
+```bash
+
 npm start
 
 ```
