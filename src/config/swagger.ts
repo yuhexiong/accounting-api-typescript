@@ -1,8 +1,8 @@
 const swaggerOption = {
   info: {
-    title: 'Accounting Server Document',
+    title: 'Accounting Document',
     version: '1.0.0',
-    description: 'Accounting Server For Record Consumption',
+    description: 'Accounting For Record Consumption',
   },
   security: {
     BasicAuth: {
