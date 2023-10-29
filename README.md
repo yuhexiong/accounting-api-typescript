@@ -4,7 +4,7 @@
 
 - Language: Typescript
 - Web FrameWork: Express
-- DataBase: MariaDB v10.5
+- DataBase: MariaDB v10.9
 
 ## ENV
 
@@ -17,7 +17,14 @@ DB_USER=
 DB_PASS=
 DB_NAME=
 
-PORT =
+# port 
+PORT=
+
+# swagger
+SWAGGER_MOUNT_PATH=/api
+
+# insert basic data
+INSERT_DATA=true
 ```
 
 ## Run
@@ -30,11 +37,10 @@ npm install
 
 ```
 
-### generate migration file and transition database schema
+### run migration file
 
 ```bash
 
-npm run migration:generate
 npm run migration:run
 
 ```

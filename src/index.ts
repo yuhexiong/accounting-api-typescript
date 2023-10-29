@@ -6,12 +6,15 @@ import ConsumptionRouter from './routers/consumptionRouter';
 import TypeRouter from "./routers/typeRouter";
 import Type from "./entity/type";
 import CronJob from "./entity/cronJob";
+import swaggerOption from "./config/swagger";
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 
 dotenv.config({ path: __dirname + '/.env' });
 
 const port = process.env.PORT ?? 8080;
 const app: Express = express();
 app.use(express.json());
+expressJSDocSwagger(app)(swaggerOption);
 
 const consumptionRouter = new ConsumptionRouter;
 const typeRouter = new TypeRouter;

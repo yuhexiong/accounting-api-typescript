@@ -15,6 +15,19 @@ export default class TypeRouter {
     this.router.delete('/:id', this.handleDeleteType);
   }
 
+  /**
+   * @typedef { object } createType
+   * @property { string } id.required - 類別id
+   * @property { string } name.required - 類別名稱
+   */
+
+  /**
+   * POST /type
+   * @summary 新增一項類別
+   * @tags type 類別
+   * @param { createType } request.body
+   * @return { object } 200 - success - application/json
+   */
   async handleCreateType(request: Request, response: Response, next: NextFunction) {
     try {
       const { id, name } = request.body;
@@ -24,6 +37,19 @@ export default class TypeRouter {
     }
   }
 
+  /**
+   * GET /type/{id}
+   * @summary 取得一項類別
+   * @tags type 類別
+   * @param { string } id.param - 類別id
+   * @return { object } 200 - success - application/json
+   * @example response - 200 - success
+   * {
+   *     "id": "FOOD",
+   *     "status": 0,
+   *     "name": "食物"
+   * }
+   */
   async handleGetType(request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params;
@@ -37,6 +63,14 @@ export default class TypeRouter {
     }
   }
 
+  /**
+   * PATCH /type/{id}/{name}
+   * @summary 更新一項類別名稱
+   * @tags type 類別
+   * @param { string } id.param - 類別id
+   * @param { string } name.param - 類別名稱
+   * @return { object } 200 - success - application/json
+   */
   async handleUpdateType(request: Request, response: Response, next: NextFunction) {
     try {
       const { id, name } = request.params;
@@ -55,6 +89,13 @@ export default class TypeRouter {
     }
   }
 
+  /**
+   * DELETE /type/{id}
+   * @summary 刪除一項類別
+   * @tags type 類別
+   * @param { string } id.param - 類別id
+   * @return { object } 200 - success - application/json
+   */
   async handleDeleteType(request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params;

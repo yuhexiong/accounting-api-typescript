@@ -15,6 +15,21 @@ export default class ConsumptionRouter {
     this.router.delete('/:id', this.handleDeleteConsumption);
   }
 
+  /**
+   * @typedef { object } createConsumption
+   * @property { string } typeId - 類別id, 預設OTHER
+   * @property { string } name - 消費名稱
+   * @property { number } amount - 金額, 預設0
+   * @property { string } note - 註記
+   */
+
+  /**
+   * POST /consumption
+   * @summary 新增一筆消費
+   * @tags consumption 消費
+   * @param { createConsumption } request.body
+   * @return { object } 200 - success - application/json
+   */
   async handleCreateConsumption(request: Request, response: Response, next: NextFunction) {
     try {
       const {
@@ -29,6 +44,23 @@ export default class ConsumptionRouter {
     }
   }
 
+  /**
+   * GET /consumption/{id}
+   * @summary 取得一筆消費
+   * @tags consumption 消費
+   * @param { number } id.param - 消費id
+   * @return { object } 200 - success - application/json
+   * @example response - 200 - success
+   * {
+   *     "id": 1,
+   *     "date": "2023-09-21",
+   *     "status": 0,
+   *     "typeId": "FOOD",
+   *     "name": "韓式泡菜",
+   *     "amount": 150,
+   *     "note": "巷口那家"
+   * }
+   */
   async handleGetConsumption(request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params;
@@ -42,6 +74,22 @@ export default class ConsumptionRouter {
     }
   }
 
+  /**
+   * @typedef { object } updateConsumption
+   * @property { string } typeId - 類別id
+   * @property { string } name - 消費名稱
+   * @property { number } amount - 金額
+   * @property { string } note - 註記
+   */
+
+  /**
+   * PUT /consumption/{id}
+   * @summary 更新一筆消費
+   * @tags consumption 消費
+   * @param { number } id.param - 消費id
+   * @param { updateConsumption } request.body
+   * @return { object } 200 - success - application/json
+   */
   async handleUpdateConsumption(request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params;
@@ -61,6 +109,13 @@ export default class ConsumptionRouter {
     }
   }
 
+  /**
+   * DELETE /consumption/{id}
+   * @summary 刪除一筆消費
+   * @tags consumption 消費
+   * @param { number } id.param - 消費id
+   * @return { object } 200 - success - application/json
+   */
   async handleDeleteConsumption(request: Request, response: Response, next: NextFunction) {
     try {
       const { id } = request.params;
