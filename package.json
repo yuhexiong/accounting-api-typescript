@@ -23,8 +23,8 @@
       "start": "ts-node src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs",
       "migration:create": "typeorm-ts-node-commonjs migration:create src/migrations/new-migration",
-      "migration:generate": "typeorm-ts-node-commonjs migration:generate -d data-source.ts src/migrations/new-migration",
-      "migration:run": "typeorm-ts-node-commonjs migration:run -d data-source.ts",
-      "migration:revert": "typeorm-ts-node-commonjs migration:revert -d data-source.ts"
+      "migration:generate": "typeorm-ts-node-commonjs migration:generate -d dataSource.ts src/migrations/new-migration",
+      "migration:run": "typeorm-ts-node-commonjs migration:run -d dataSource.ts",
+      "migration:revert": "typeorm-ts-node-commonjs migration:revert -d dataSource.ts"
    }
 }

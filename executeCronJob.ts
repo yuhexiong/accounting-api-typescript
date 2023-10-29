@@ -1,8 +1,8 @@
 import { CronJob } from 'cron';
-import { AppDataSource } from "./data-source";
-import CronJobEntity from "./src/entity/cronJob";
-import Consumption from './src/entity/consumption';
 import moment from 'moment';
+import { AppDataSource } from "./dataSource";
+import Consumption from './src/entity/consumption';
+import CronJobEntity from "./src/entity/cronJob";
 import Report from './src/entity/report';
 
 export enum cronJobList {
@@ -34,10 +34,10 @@ export const executeCronJobs = async () => {
         report.year = Number(moment(startOfMonth).format('YYYY'));
         report.month = Number(moment(startOfMonth).format('MM'));
 
-        const content = {};
+        const content: { [x: string]: number } = {};
         let totalAmount = 0;
         for (const consumption of consumptions) {
-          content[consumption.typeId] = (content[consumption.typeId] ?? 0) + consumption.amount;
+          content[consumption.typeId] = (!content[consumption.typeId] ? 0 : content[consumption.typeId]) + consumption.amount;
           totalAmount += consumption.amount;
         }
 
