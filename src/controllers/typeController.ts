@@ -3,7 +3,7 @@ import Type from '../entity/type';
 
 export default class TypeController {
   /**
-   * 新增一筆類別
+   * 新增一項類別
    * @param id 
    * @param name 
    * @returns 
@@ -17,7 +17,7 @@ export default class TypeController {
   }
 
   /**
-   * 取得類別
+   * 取得一項類別
    * @param typeId 
    * @returns 
    */
@@ -39,8 +39,22 @@ export default class TypeController {
   }
 
   /**
-   * 修改類別名稱
+   * 取得所有類別
+   * @returns 
+   */
+  public static async getAllTypes() {
+    const types = await AppDataSource.getRepository(Type)
+      .createQueryBuilder('type')
+      .where('type.status=:status', { status: 0 })
+      .getMany();
+
+    return types;
+  }
+
+  /**
+   * 修改一項類別名稱
    * @param typeId 
+   * @param name 
    * @returns 
    */
   public static async updateType(typeId: string, name: string) {
@@ -56,8 +70,8 @@ export default class TypeController {
   }
 
   /**
-   * 刪除類別
-   * @param consumptionId 
+   * 刪除一項類別
+   * @param typeId 
    * @returns 
    */
   public static async deleteType(typeId: string) {

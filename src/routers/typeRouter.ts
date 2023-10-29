@@ -10,6 +10,7 @@ export default class TypeRouter {
 
   initializeRoutes() {
     this.router.post('/', this.handleCreateType);
+    this.router.get('/', this.handleGetAllTypes);
     this.router.get('/:id', this.handleGetType);
     this.router.patch('/:id/:name', this.handleUpdateType);
     this.router.delete('/:id', this.handleDeleteType);
@@ -38,10 +39,42 @@ export default class TypeRouter {
   }
 
   /**
+   * GET /type
+   * @summary 取得所有類別
+   * @tags type 類別
+   * @return { object } 200 - success - application/json
+   * @example response - 200 - success
+   * [
+   *   {
+   *     "id": "DRINK",
+   *     "status": 0,
+   *     "name": "飲料"
+   *   },
+   *   {
+   *     "id": "FOOD",
+   *     "status": 0,
+   *     "name": "食物"
+   *   },
+   *   {
+   *     "id": "OTHER",
+   *     "status": 0,
+   *     "name": "其他"
+   *   }
+   * ]
+   */
+  async handleGetAllTypes(request: Request, response: Response, next: NextFunction) {
+    try {
+      response.send(await TypeController.getAllTypes());
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
    * GET /type/{id}
    * @summary 取得一項類別
    * @tags type 類別
-   * @param { string } id.param - 類別id
+   * @param { string } id.param.required - 類別id
    * @return { object } 200 - success - application/json
    * @example response - 200 - success
    * {
@@ -67,8 +100,8 @@ export default class TypeRouter {
    * PATCH /type/{id}/{name}
    * @summary 更新一項類別名稱
    * @tags type 類別
-   * @param { string } id.param - 類別id
-   * @param { string } name.param - 類別名稱
+   * @param { string } id.param.required - 類別id
+   * @param { string } name.param.required - 類別名稱
    * @return { object } 200 - success - application/json
    */
   async handleUpdateType(request: Request, response: Response, next: NextFunction) {
@@ -80,7 +113,7 @@ export default class TypeRouter {
       }
 
       if (!name) {
-        throw new Error('Should provide id in path');
+        throw new Error('Should provide name in path');
       }
 
       response.send(await TypeController.updateType(id, name));
@@ -93,7 +126,7 @@ export default class TypeRouter {
    * DELETE /type/{id}
    * @summary 刪除一項類別
    * @tags type 類別
-   * @param { string } id.param - 類別id
+   * @param { string } id.param.required - 類別id
    * @return { object } 200 - success - application/json
    */
   async handleDeleteType(request: Request, response: Response, next: NextFunction) {

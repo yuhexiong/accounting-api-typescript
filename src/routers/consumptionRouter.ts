@@ -48,7 +48,7 @@ export default class ConsumptionRouter {
    * GET /consumption/{id}
    * @summary 取得一筆消費
    * @tags consumption 消費
-   * @param { number } id.param - 消費id
+   * @param { number } id.param.required - 消費id
    * @return { object } 200 - success - application/json
    * @example response - 200 - success
    * {
@@ -86,7 +86,7 @@ export default class ConsumptionRouter {
    * PUT /consumption/{id}
    * @summary 更新一筆消費
    * @tags consumption 消費
-   * @param { number } id.param - 消費id
+   * @param { number } id.param.required - 消費id
    * @param { updateConsumption } request.body
    * @return { object } 200 - success - application/json
    */
@@ -113,7 +113,7 @@ export default class ConsumptionRouter {
    * DELETE /consumption/{id}
    * @summary 刪除一筆消費
    * @tags consumption 消費
-   * @param { number } id.param - 消費id
+   * @param { number } id.param.required - 消費id
    * @return { object } 200 - success - application/json
    */
   async handleDeleteConsumption(request: Request, response: Response, next: NextFunction) {

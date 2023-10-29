@@ -8,6 +8,7 @@ import Type from "./entity/type";
 import CronJob from "./entity/cronJob";
 import swaggerOption from "./config/swagger";
 import expressJSDocSwagger from 'express-jsdoc-swagger';
+import ReportRouter from "./routers/reportRouter";
 
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -18,8 +19,11 @@ expressJSDocSwagger(app)(swaggerOption);
 
 const consumptionRouter = new ConsumptionRouter;
 const typeRouter = new TypeRouter;
+const reportRouter = new ReportRouter;
+
 app.use('/consumption', consumptionRouter.router);
 app.use('/type', typeRouter.router);
+app.use('/report', reportRouter.router);
 
 async function main() {
   await AppDataSource.initialize();

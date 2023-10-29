@@ -5,7 +5,7 @@ import TypeController from './typeController';
 
 export default class ConsumptionController {
   /**
-   * 新增一次消費
+   * 新增一筆消費
    * @param typeId 
    * @param name 
    * @param amount 
@@ -30,7 +30,7 @@ export default class ConsumptionController {
   }
 
   /**
-   * 取得消費
+   * 取得一筆消費
    * @param consumptionId 
    * @returns 
    */
@@ -52,7 +52,7 @@ export default class ConsumptionController {
   }
 
   /**
-   * 修改消費
+   * 修改一筆消費
    * @param consumptionId 
    * @param typeId 
    * @param name 
@@ -82,7 +82,7 @@ export default class ConsumptionController {
   }
 
   /**
-   * 刪除消費
+   * 刪除一筆消費
    * @param consumptionId 
    * @returns 
    */
