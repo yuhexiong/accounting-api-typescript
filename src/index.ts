@@ -39,10 +39,40 @@ async function main() {
 }
 
 async function insertData() {
-  const type = new Type();
-  type.id = 'OTHER';
-  type.name = '其他';
-  await AppDataSource.manager.save(type);
+  const typeFood = new Type();
+  typeFood.id = 'FOOD';
+  typeFood.name = '食物';
+  await AppDataSource.manager.save(typeFood);
+
+  const typeShopping = new Type();
+  typeShopping.id = 'SHOPPING';
+  typeShopping.name = '購物';
+  await AppDataSource.manager.save(typeShopping);
+
+  const typeEntertainment = new Type();
+  typeEntertainment.id = 'ENTERTAINMENT';
+  typeEntertainment.name = '娛樂';
+  await AppDataSource.manager.save(typeEntertainment);
+
+  const typeExercise = new Type();
+  typeExercise.id = 'EXERCISE';
+  typeExercise.name = '運動';
+  await AppDataSource.manager.save(typeExercise);
+
+  const typeTransportation = new Type();
+  typeTransportation.id = 'TRANSPORTATION';
+  typeTransportation.name = '交通費';
+  await AppDataSource.manager.save(typeTransportation);
+
+  const typeUtility = new Type();
+  typeUtility.id = 'UTILITY';
+  typeUtility.name = '水電費';
+  await AppDataSource.manager.save(typeUtility);
+
+  const typeOther = new Type();
+  typeOther.id = 'OTHER';
+  typeOther.name = '其他';
+  await AppDataSource.manager.save(typeOther);
 
   const cronJob = new CronJob();
   cronJob.name = cronJobList.MONTHLY_REPORT;
