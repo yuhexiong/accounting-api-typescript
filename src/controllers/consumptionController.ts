@@ -30,6 +30,29 @@ export default class ConsumptionController {
   }
 
   /**
+   * 取得所有消費
+   * @param year 
+   * @param month 
+   * @returns 
+   */
+  public static async getAllConsumptions(year?: number, month?: number) {
+    const queryBuilder = AppDataSource.getRepository(Consumption)
+      .createQueryBuilder('consumption')
+    
+
+    if (month) {
+      // 只提供月份就預設今年
+      const dateString = year ? `${year}-${month}-01` : `${moment().format('YYYY')}-${month}-01`;
+      const startOfMonth = moment(dateString).startOf('month').format('YYYY-MM-DD');
+      const endOfMonth = moment(dateString).endOf('month').format('YYYY-MM-DD');
+
+      queryBuilder.where('consumption.date BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth });
+    }
+
+    return await queryBuilder.getMany();
+  }
+
+  /**
    * 取得一筆消費
    * @param consumptionId 
    * @returns 

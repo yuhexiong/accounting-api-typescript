@@ -10,6 +10,7 @@ export default class ConsumptionRouter {
 
   initializeRoutes() {
     this.router.post('/', this.handleCreateConsumption);
+    this.router.get('/', this.handleGetAllConsumptions);
     this.router.get('/:id', this.handleGetConsumption);
     this.router.put('/:id', this.handleUpdateConsumption);
     this.router.delete('/:id', this.handleDeleteConsumption);
@@ -39,6 +40,48 @@ export default class ConsumptionRouter {
         note,
       } = request.body;
       response.send(await ConsumptionController.createConsumption(typeId, name, amount, note));
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * GET /consumption
+   * @summary 取得所有消費
+   * @tags consumption 消費
+   * @param { number } year.query - 年
+   * @param { number } month.query - 月份
+   * @return { object } 200 - success - application/json
+   * @example response - 200 - success
+   *[
+   *  {
+   *    "id": 1,
+   *    "date": "2023-09-21",
+   *    "status": 0,
+   *    "typeId": "FOOD",
+   *    "name": "韓式泡菜",
+   *    "amount": 150,
+   *    "note": "好吃"
+   *  },
+   *  {
+   *    "id": 2,
+   *    "date": "2023-09-29",
+   *    "status": 0,
+   *    "typeId": "FOOD",
+   *    "name": "泡麵",
+   *    "amount": 500,
+   *    "note": "還好"
+   *  }
+   *]
+   */
+  async handleGetAllConsumptions(request: Request, response: Response, next: NextFunction) {
+    try {
+      const {
+        year,
+        month,
+      } = request.query;
+
+      response.send(await ConsumptionController.getAllConsumptions(Number(year), Number(month)));
     } catch (error) {
       next(error)
     }

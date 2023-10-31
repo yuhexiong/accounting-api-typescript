@@ -28,7 +28,8 @@ SWAGGER_MOUNT_PATH=/api
 # insert basic data
 INSERT_DATA=true
 ```
-### If INSERT_DATA === true, it will insert 7 common types. (Only set true when you use new db plz)  
+**If INSERT_DATA === true, it will insert 7 common types.**  
+**(Only set true when you use new db plz)**  
 - FOOD/食物
 - SHOPPING/購物
 - ENTERTAINMENT/娛樂
@@ -77,6 +78,7 @@ npm start
 
 - `POST /consumption`：新增一筆消費
 - `GET /consumption/{id}`：取得一筆消費
+- `GET /consumption`：取得所有消費 可限定年月
 - `PUT /consumption/{id}`：更新一筆消費
 - `DELETE /consumption/{id}`：刪除一項消費
 

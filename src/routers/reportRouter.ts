@@ -1,5 +1,4 @@
 import express, { NextFunction, Request, Response, Router } from 'express';
-import TypeController from '../controllers/typeController';
 import ReportController from '../controllers/reportController';
 
 export default class ReportRouter {
