@@ -12,7 +12,7 @@ import ReportRouter from "./routers/reportRouter";
 
 dotenv.config({ path: __dirname + '/.env' });
 
-const port = process.env.PORT ?? 8080;
+const port = process.env.PORT ?? 7777;
 const app: Express = express();
 app.use(express.json());
 expressJSDocSwagger(app)(swaggerOption);
