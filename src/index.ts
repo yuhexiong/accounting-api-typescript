@@ -9,6 +9,7 @@ import CronJob from "./entity/cronJob";
 import swaggerOption from "./config/swagger";
 import expressJSDocSwagger from 'express-jsdoc-swagger';
 import ReportRouter from "./routers/reportRouter";
+import cors from 'cors';
 
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -16,6 +17,8 @@ const port = process.env.PORT ?? 7777;
 const app: Express = express();
 app.use(express.json());
 expressJSDocSwagger(app)(swaggerOption);
+
+app.use(cors());
 
 const consumptionRouter = new ConsumptionRouter;
 const typeRouter = new TypeRouter;
