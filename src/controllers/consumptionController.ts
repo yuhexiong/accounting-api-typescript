@@ -38,6 +38,7 @@ export default class ConsumptionController {
   public static async getAllConsumptions(year?: number, month?: number) {
     const queryBuilder = AppDataSource.getRepository(Consumption)
       .createQueryBuilder('consumption')
+      .where('consumption.status=:status', { status: 0 })
     
 
     if (month) {
@@ -46,7 +47,7 @@ export default class ConsumptionController {
       const startOfMonth = moment(dateString).startOf('month').format('YYYY-MM-DD');
       const endOfMonth = moment(dateString).endOf('month').format('YYYY-MM-DD');
 
-      queryBuilder.where('consumption.date BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth });
+      queryBuilder.andWhere('consumption.date BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth });
     }
 
     return await queryBuilder.getMany();
