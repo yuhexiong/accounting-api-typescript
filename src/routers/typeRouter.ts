@@ -47,17 +47,14 @@ export default class TypeRouter {
    * [
    *   {
    *     "id": "DRINK",
-   *     "status": 0,
    *     "name": "飲料"
    *   },
    *   {
    *     "id": "FOOD",
-   *     "status": 0,
    *     "name": "食物"
    *   },
    *   {
    *     "id": "OTHER",
-   *     "status": 0,
    *     "name": "其他"
    *   }
    * ]
@@ -79,7 +76,6 @@ export default class TypeRouter {
    * @example response - 200 - success
    * {
    *     "id": "FOOD",
-   *     "status": 0,
    *     "name": "食物"
    * }
    */

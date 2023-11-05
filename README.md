@@ -72,7 +72,7 @@ npm start
 - `GET /type`：取得所有類別
 - `GET /type/{id}`：取得一項類別
 - `PATCH /type/{id}/{name}`：更新一項類別名稱
-- `DELETE /type/{id}`：刪除一項類別
+- `DELETE /type/{id}`：刪除一項類別, 將有使用的typeId改為OTHER, 預設OTHER不能刪除
 
 ### consumption
 

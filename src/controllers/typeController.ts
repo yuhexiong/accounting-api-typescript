@@ -1,4 +1,5 @@
 import { AppDataSource } from "../../dataSource";
+import Consumption from "../entity/consumption";
 import Type from '../entity/type';
 
 export default class TypeController {
@@ -31,10 +32,6 @@ export default class TypeController {
       throw new Error(`type ${typeId} not found`);
     }
 
-    if (type.status !== 0) {
-      throw new Error(`type ${typeId} not active`);
-    }
-
     return type;
   }
 
@@ -43,12 +40,9 @@ export default class TypeController {
    * @returns 
    */
   public static async getAllTypes() {
-    const types = await AppDataSource.getRepository(Type)
+    return await AppDataSource.getRepository(Type)
       .createQueryBuilder('type')
-      .where('type.status=:status', { status: 0 })
       .getMany();
-
-    return types;
   }
 
   /**
@@ -75,13 +69,25 @@ export default class TypeController {
    * @returns 
    */
   public static async deleteType(typeId: string) {
+    // 預設無法刪除 OTHER
+    if (typeId === 'OTHER') {
+      throw new Error('Can not delete OTHER');
+    }
+
     // valid typeId
     await TypeController.getType(typeId);
 
+    // 如果有consumption使用這個type, 就更新為 OTHER
+    await AppDataSource.getRepository(Consumption)
+      .createQueryBuilder('consumption')
+      .update()
+      .set({ typeId: 'OTHER' })
+      .where('typeId=:typeId', { typeId })
+      .execute();
+
     return await AppDataSource.getRepository(Type)
       .createQueryBuilder('type')
-      .update()
-      .set({ status: 9 })
+      .delete()
       .where('type.id=:id', { id: typeId })
       .execute();
   }
