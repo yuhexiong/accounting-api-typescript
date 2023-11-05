@@ -42,6 +42,7 @@ export default class TypeController {
   public static async getAllTypes() {
     return await AppDataSource.getRepository(Type)
       .createQueryBuilder('type')
+      .orderBy({ 'updatedAt': 'ASC' })
       .getMany();
   }
 

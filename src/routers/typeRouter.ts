@@ -40,21 +40,24 @@ export default class TypeRouter {
 
   /**
    * GET /type
-   * @summary 取得所有類別
+   * @summary 取得所有類別, 依更新時間排序
    * @tags type 類別
    * @return { object } 200 - success - application/json
    * @example response - 200 - success
    * [
    *   {
    *     "id": "DRINK",
+   *     "updatedAt": "2023-11-05T06:15:19.717Z",
    *     "name": "飲料"
    *   },
    *   {
    *     "id": "FOOD",
+   *     "updatedAt": "2023-11-05T06:15:19.717Z",
    *     "name": "食物"
    *   },
    *   {
    *     "id": "OTHER",
+   *     "updatedAt": "2023-11-05T06:15:19.717Z",
    *     "name": "其他"
    *   }
    * ]
@@ -76,6 +79,7 @@ export default class TypeRouter {
    * @example response - 200 - success
    * {
    *     "id": "FOOD",
+   *     "updatedAt": "2023-11-05T06:15:19.717Z",
    *     "name": "食物"
    * }
    */
