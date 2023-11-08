@@ -10,6 +10,7 @@ import swaggerOption from "./config/swagger";
 import expressJSDocSwagger from 'express-jsdoc-swagger';
 import ReportRouter from "./routers/reportRouter";
 import cors from 'cors';
+import { responseHandler } from "./middlewares/errorHandling";
 
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -27,6 +28,8 @@ const reportRouter = new ReportRouter;
 app.use('/consumption', consumptionRouter.router);
 app.use('/type', typeRouter.router);
 app.use('/report', reportRouter.router);
+
+app.use(responseHandler);
 
 async function main() {
   await AppDataSource.initialize();
