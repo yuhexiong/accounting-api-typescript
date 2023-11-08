@@ -6,9 +6,6 @@ export default class Report {
   @Generated('increment')
   id!: number;
 
-  @Column({ type: "smallint", comment: "狀態", default: 0 })
-  status?: number;
-
   @Column({ type: "smallint", comment: '年' })
   year!: number;
 

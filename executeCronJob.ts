@@ -26,8 +26,7 @@ export const executeCronJobs = async () => {
 
         const consumptions = await AppDataSource.getRepository(Consumption)
           .createQueryBuilder('consumption')
-          .where('consumption.status=:status', { status: 0 })
-          .andWhere('DATE(consumption.date) BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth })
+          .where('DATE(consumption.date) BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth })
           .getMany();
 
         const report = new Report();

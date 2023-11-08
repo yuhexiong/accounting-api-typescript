@@ -57,7 +57,6 @@ export default class ConsumptionRouter {
    *  {
    *    "id": 1,
    *    "date": "2023-09-21",
-   *    "status": 0,
    *    "typeId": "FOOD",
    *    "name": "韓式泡菜",
    *    "amount": 150,
@@ -66,7 +65,6 @@ export default class ConsumptionRouter {
    *  {
    *    "id": 2,
    *    "date": "2023-09-29",
-   *    "status": 0,
    *    "typeId": "FOOD",
    *    "name": "泡麵",
    *    "amount": 500,
@@ -97,7 +95,6 @@ export default class ConsumptionRouter {
    * {
    *     "id": 1,
    *     "date": "2023-09-21",
-   *     "status": 0,
    *     "typeId": "FOOD",
    *     "name": "韓式泡菜",
    *     "amount": 150,

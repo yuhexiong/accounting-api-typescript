@@ -10,9 +10,6 @@ export default class Consumption {
   @Column({ type: "varchar", comment: '日期', length: 20 })
   date!: string;
 
-  @Column({ type: "smallint", comment: "狀態", default: 0 })
-  status?: number;
-
   @Column({ type: "varchar", comment: '類別', length: 100 })
   typeId!: string;
 

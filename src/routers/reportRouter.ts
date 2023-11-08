@@ -22,7 +22,6 @@ export default class ReportRouter {
    * @example response - 200 - success
    * {
    *     "id": 14,
-   *     "status": 0,
    *     "year": 2023,
    *     "month": 9,
    *     "content": {

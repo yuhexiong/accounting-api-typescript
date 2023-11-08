@@ -13,7 +13,6 @@ export default class ReportController {
       .createQueryBuilder('report')
       .where('report.year=:year', { year })
       .where('report.month=:month', { month })
-      .where('report.status=:status', { status: 0 })
       .getOne();
 
     if (!report) {
