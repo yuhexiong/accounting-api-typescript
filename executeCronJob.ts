@@ -1,9 +1,8 @@
 import { CronJob } from 'cron';
 import moment from 'moment';
 import { AppDataSource } from "./dataSource";
-import Consumption from './src/entity/consumption';
+import ReportController from './src/controllers/reportController';
 import CronJobEntity from "./src/entity/cronJob";
-import Report from './src/entity/report';
 
 export enum cronJobList {
   MONTHLY_REPORT = 'monthlyReport',
@@ -21,30 +20,11 @@ export const executeCronJobs = async () => {
 
       /* 計算上個月花費報表 */
       if (cronJob.name === cronJobList.MONTHLY_REPORT) {
-        const startOfMonth = moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD');
-        const endOfMonth = moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
+        const lastMonth = moment().subtract(1, 'months').startOf('month');
+        const year = Number(lastMonth.format('YYYY'));
+        const month = Number(lastMonth.format('MM'));
 
-        const consumptions = await AppDataSource.getRepository(Consumption)
-          .createQueryBuilder('consumption')
-          .where('DATE(consumption.date) BETWEEN :startOfMonth AND :endOfMonth', { startOfMonth, endOfMonth })
-          .getMany();
-
-        const report = new Report();
-        report.year = Number(moment(startOfMonth).format('YYYY'));
-        report.month = Number(moment(startOfMonth).format('MM'));
-
-        const content: { [x: string]: number } = {};
-        let totalAmount = 0;
-        for (const consumption of consumptions) {
-          content[consumption.typeId] = (!content[consumption.typeId] ? 0 : content[consumption.typeId]) + consumption.amount;
-          totalAmount += consumption.amount;
-        }
-
-        report.content = content;
-        report.totalAmount = totalAmount;
-
-        await AppDataSource.manager.save(report);
-
+        await ReportController.createReport(year, month);
       } else {
         throw new Error(`cronJob ${cronJob.name} not found in code`);
       }

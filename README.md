@@ -85,4 +85,5 @@ npm start
 
 ### report
 
+- `POST /report/{year}/{month}`：產生指定年月報表
 - `GET /report/{year}/{month}`：取得指定年月報表
