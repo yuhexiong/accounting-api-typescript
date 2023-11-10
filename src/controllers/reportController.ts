@@ -51,7 +51,7 @@ export default class ReportController {
     return await AppDataSource.getRepository(Report)
       .createQueryBuilder('report')
       .where('report.year=:year', { year })
-      .where('report.month=:month', { month })
+      .andWhere('report.month=:month', { month })
       .getOne();
   }
 }
