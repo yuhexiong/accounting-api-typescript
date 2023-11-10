@@ -15,7 +15,7 @@ export default class ReportRouter {
 
   /**
    * POST /report/{year}/{month}
-   * @summary 取得指定年月報表
+   * @summary 產生指定年月報表
    * @tags report 報表
    * @param { number } year.param.required - 年
    * @param { number } month.param.required - 月份
@@ -26,8 +26,8 @@ export default class ReportRouter {
    *     "year": 2023,
    *     "month": 9,
    *     "content": {
-   *         "FOOD": 650,
-   *         "OTHER": 300
+   *         "FOOD-食物": 650,
+   *         "OTHER-其他": 300
    *     },
    *     "totalAmount": 950
    * }
@@ -63,8 +63,8 @@ export default class ReportRouter {
    *     "year": 2023,
    *     "month": 9,
    *     "content": {
-   *         "FOOD": 650,
-   *         "OTHER": 300
+   *         "FOOD-食物": 650,
+   *         "OTHER-其他": 300
    *     },
    *     "totalAmount": 950
    * }

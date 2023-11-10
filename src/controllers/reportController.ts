@@ -48,17 +48,10 @@ export default class ReportController {
    * @returns 
    */
   public static async getReport(year: number, month: number) {
-    let report = await AppDataSource.getRepository(Report)
+    return await AppDataSource.getRepository(Report)
       .createQueryBuilder('report')
       .where('report.year=:year', { year })
       .where('report.month=:month', { month })
       .getOne();
-
-    if (!report) {
-      // 沒有就手動新增一份
-      report = await this.createReport(year, month);
-    }
-
-    return report;
   }
 }
