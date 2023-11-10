@@ -38,6 +38,7 @@ export default class ConsumptionController {
   public static async getAllConsumptions(year?: number, month?: number) {
     const queryBuilder = AppDataSource.getRepository(Consumption)
       .createQueryBuilder('consumption')
+      .leftJoinAndSelect('consumption.type', 'type');
 
     if (month) {
       // 只提供月份就預設今年
@@ -59,6 +60,7 @@ export default class ConsumptionController {
   public static async getConsumption(consumptionId: number) {
     const consumption = await AppDataSource.getRepository(Consumption)
       .createQueryBuilder('consumption')
+      .leftJoinAndSelect('consumption.type', 'type')
       .where('consumption.id=:id', { id: consumptionId })
       .getOne();
 

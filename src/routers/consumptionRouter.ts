@@ -60,7 +60,12 @@ export default class ConsumptionRouter {
    *    "typeId": "FOOD",
    *    "name": "韓式泡菜",
    *    "amount": 150,
-   *    "note": "好吃"
+   *    "note": "好吃",
+   *    "type": {
+   *       "id": "FOOD",
+   *       "createDate": "2023-11-08T01:43:46.412Z",
+   *       "name": "食物"
+   *    }
    *  },
    *  {
    *    "id": 2,
@@ -68,7 +73,12 @@ export default class ConsumptionRouter {
    *    "typeId": "FOOD",
    *    "name": "泡麵",
    *    "amount": 500,
-   *    "note": "還好"
+   *    "note": "還好",
+   *    "type": {
+   *       "id": "FOOD",
+   *       "createDate": "2023-11-08T01:43:46.412Z",
+   *       "name": "食物"
+   *    }
    *  }
    *]
    */
@@ -98,7 +108,12 @@ export default class ConsumptionRouter {
    *     "typeId": "FOOD",
    *     "name": "韓式泡菜",
    *     "amount": 150,
-   *     "note": "巷口那家"
+   *     "note": "巷口那家",
+   *     "type": {
+   *        "id": "FOOD",
+   *        "createDate": "2023-11-08T01:43:46.412Z",
+   *        "name": "食物"
+   *     }
    * }
    */
   async handleGetConsumption(request: Request, response: Response, next: NextFunction) {

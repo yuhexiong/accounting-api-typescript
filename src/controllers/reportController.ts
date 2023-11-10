@@ -10,8 +10,16 @@ export default class ReportController {
    * @returns 
    */
   public static async createReport(year: number, month: number) {
+    // 將過去產生的同年月的報表刪除
+    await AppDataSource.getRepository(Report)
+      .createQueryBuilder('report')
+      .delete()
+      .where('report.year=:year', { year })
+      .andWhere('report.month=:month', { month })
+      .execute();
+
     const consumptions = await ConsumptionController.getAllConsumptions(year, month);
-  
+
     const report = new Report();
     report.year = year;
     report.month = month;
@@ -19,7 +27,9 @@ export default class ReportController {
     const content: { [x: string]: number } = {};
     let totalAmount = 0;
     for (const consumption of consumptions) {
-      content[consumption.typeId] = (!content[consumption.typeId] ? 0 : content[consumption.typeId]) + consumption.amount;
+      content[`${consumption.typeId}-${consumption.type.name}`] = 
+        (!content[`${consumption.typeId}-${consumption.type.name}`] ? 0 : content[`${consumption.typeId}-${consumption.type.name}`])
+        + consumption.amount;
       totalAmount += consumption.amount;
     }
 
@@ -38,14 +48,15 @@ export default class ReportController {
    * @returns 
    */
   public static async getReport(year: number, month: number) {
-    const report = await AppDataSource.getRepository(Report)
+    let report = await AppDataSource.getRepository(Report)
       .createQueryBuilder('report')
       .where('report.year=:year', { year })
       .where('report.month=:month', { month })
       .getOne();
 
     if (!report) {
-      throw new Error(`report ${year}-${month} not found`);
+      // 沒有就手動新增一份
+      report = await this.createReport(year, month);
     }
 
     return report;
