@@ -1,16 +1,16 @@
+import cors from 'cors';
 import * as dotenv from "dotenv";
 import express, { Express } from 'express';
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 import { AppDataSource } from "../dataSource";
 import { cronJobList, executeCronJobs } from "../executeCronJob";
-import ConsumptionRouter from './routers/consumptionRouter';
-import TypeRouter from "./routers/typeRouter";
-import Type from "./entity/type";
-import CronJob from "./entity/cronJob";
 import swaggerOption from "./config/swagger";
-import expressJSDocSwagger from 'express-jsdoc-swagger';
-import ReportRouter from "./routers/reportRouter";
-import cors from 'cors';
+import CronJob from "./entity/cronJob";
+import Type from "./entity/type";
 import { responseHandler } from "./middlewares/errorHandling";
+import ConsumptionRouter from './routers/consumptionRouter';
+import ReportRouter from "./routers/reportRouter";
+import TypeRouter from "./routers/typeRouter";
 
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -33,8 +33,10 @@ app.use(responseHandler);
 
 async function main() {
   await AppDataSource.initialize();
-  if (process.env.INSERT_DATA === 'true') {
-    await insertData();
+  if (process.env.INSERT_CHINESE_DATA === 'true') {
+    await insertData(true);
+  } else if (process.env.INSERT_ENGLISH_DATA === 'true') {
+    await insertData(false);
   }
 
   app.listen(port, () => {
@@ -44,40 +46,40 @@ async function main() {
   await executeCronJobs();
 }
 
-async function insertData() {
+async function insertData(isChinese?: boolean) {
   const typeFood = new Type();
   typeFood.id = 'FOOD';
-  typeFood.name = '食物';
+  typeFood.name = isChinese ? '食物' : 'FOOD';
   await AppDataSource.manager.save(typeFood);
 
   const typeShopping = new Type();
   typeShopping.id = 'SHOPPING';
-  typeShopping.name = '購物';
+  typeShopping.name = isChinese ? '購物' : 'SHOPPING';
   await AppDataSource.manager.save(typeShopping);
 
   const typeEntertainment = new Type();
   typeEntertainment.id = 'ENTERTAINMENT';
-  typeEntertainment.name = '娛樂';
+  typeEntertainment.name = isChinese ? '娛樂' : 'ENTERTAINMENT';
   await AppDataSource.manager.save(typeEntertainment);
 
   const typeExercise = new Type();
   typeExercise.id = 'EXERCISE';
-  typeExercise.name = '運動';
+  typeExercise.name = isChinese ? '運動' : 'EXERCISE';
   await AppDataSource.manager.save(typeExercise);
 
   const typeTransportation = new Type();
   typeTransportation.id = 'TRANSPORTATION';
-  typeTransportation.name = '交通費';
+  typeTransportation.name = isChinese ? '交通費' : 'TRANSPORTATION';
   await AppDataSource.manager.save(typeTransportation);
 
   const typeUtility = new Type();
   typeUtility.id = 'UTILITY';
-  typeUtility.name = '水電費';
+  typeUtility.name = isChinese ? '水電費' : 'TRANSPORTATION';
   await AppDataSource.manager.save(typeUtility);
 
   const typeOther = new Type();
   typeOther.id = 'OTHER';
-  typeOther.name = '其他';
+  typeOther.name = isChinese ? '其他' : 'OTHER';
   await AppDataSource.manager.save(typeOther);
 
   const cronJob = new CronJob();

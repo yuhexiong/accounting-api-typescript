@@ -27,10 +27,13 @@ PORT=
 SWAGGER_MOUNT_PATH=/api
 
 # insert basic data
-INSERT_DATA=true
+INSERT_CHINESE_DATA=false
+INSERT_ENGLISH_DATA=true
 ```
-**If INSERT_DATA === true, it will insert 7 common types.**  
 **(Only set true when you use new db plz)**  
+**If INSERT_CHINESE_DATA === true, insert 7 common types with Chinese.**  
+**If INSERT_ENGLISH_DATA === true, insert 7 common types with english. Then type.name = type.id***
+
 - FOOD/食物
 - SHOPPING/購物
 - ENTERTAINMENT/娛樂
