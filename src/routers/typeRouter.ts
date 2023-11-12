@@ -19,7 +19,7 @@ export default class TypeRouter {
   /**
    * @typedef { object } createType
    * @property { string } id.required - 類別id
-   * @property { string } name.required - 類別名稱
+   * @property { string } name - 類別名稱
    */
 
   /**

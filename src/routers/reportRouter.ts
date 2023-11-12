@@ -26,8 +26,8 @@ export default class ReportRouter {
    *     "year": 2023,
    *     "month": 9,
    *     "content": {
-   *         "FOOD-食物": 650,
-   *         "OTHER-其他": 300
+   *         "FOOD": 650,
+   *         "OTHER": 300
    *     },
    *     "totalAmount": 950
    * }
@@ -63,8 +63,8 @@ export default class ReportRouter {
    *     "year": 2023,
    *     "month": 9,
    *     "content": {
-   *         "FOOD-食物": 650,
-   *         "OTHER-其他": 300
+   *         "FOOD": 650,
+   *         "OTHER": 300
    *     },
    *     "totalAmount": 950
    * }

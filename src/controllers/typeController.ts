@@ -9,7 +9,8 @@ export default class TypeController {
    * @param name 
    * @returns 
    */
-  public static async createType(id: string, name: string) {
+  public static async createType(id: string, name?: string) {
+    if (!name) name = id;
     return await AppDataSource.createQueryBuilder()
       .insert()
       .into(Type)

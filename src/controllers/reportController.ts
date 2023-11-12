@@ -27,8 +27,8 @@ export default class ReportController {
     const content: { [x: string]: number } = {};
     let totalAmount = 0;
     for (const consumption of consumptions) {
-      content[`${consumption.typeId}-${consumption.type.name}`] = 
-        (!content[`${consumption.typeId}-${consumption.type.name}`] ? 0 : content[`${consumption.typeId}-${consumption.type.name}`])
+      content[`${consumption.type.name}`] = 
+        (!content[`${consumption.type.name}`] ? 0 : content[`${consumption.type.name}`])
         + consumption.amount;
       totalAmount += consumption.amount;
     }
