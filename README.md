@@ -5,7 +5,7 @@ Automatically generate swagger by comment in router.
 
 ## Overview
 
-- Language: Typescript
+- Language: TypeScript
 - Web FrameWork: Express
 - DataBase: MariaDB v10.9
 
@@ -64,7 +64,7 @@ npm run migration:run
 
 ```bash
 
-npm start
+npm run start
 
 ```
 
