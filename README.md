@@ -94,4 +94,4 @@ npm run start
 - `GET /report/{year}/{month}`：取得指定年月報表
 
 ## ER Diagram
-![image](https://github.com/yuhexiong/accounting-api-typescript/blob/main/image/accounting_schema.png)
+![image](https://github.com/yuhexiong/accounting-api-typescript/blob/main/image/accounting_schema_v2.png)
