@@ -70,6 +70,10 @@ npm run start
 
 ```
 
+## ER Diagram
+![image](https://github.com/yuhexiong/accounting-api-typescript/blob/main/image/accounting_schema_v2.png)
+
+
 ## API
 
 ### type
@@ -92,6 +96,3 @@ npm run start
 
 - `POST /report/{year}/{month}`：產生指定年月報表
 - `GET /report/{year}/{month}`：取得指定年月報表
-
-## ER Diagram
-![image](https://github.com/yuhexiong/accounting-api-typescript/blob/main/image/accounting_schema_v2.png)
