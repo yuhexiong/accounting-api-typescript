@@ -34,7 +34,7 @@ INSERT_ENGLISH_DATA=true
 ```
 **(Only set true when you use new db plz)**  
 **If INSERT_CHINESE_DATA === true, insert 7 common types with Chinese.**  
-**If INSERT_ENGLISH_DATA === true, insert 7 common types with english. Then type.name = type.id***
+**If INSERT_ENGLISH_DATA === true, insert 7 common types with english. Then type.name = type.id**
 
 - FOOD/食物
 - SHOPPING/購物
